@@ -1,8 +1,8 @@
 // 1) أنشئ مشروع Supabase
 // 2) شغّل ملف schema.sql داخل SQL Editor
 // 3) ضع بيانات مشروعك أدناه (مفتاح anon فقط، وليس service_role)
-const SUPABASE_URL = "PASTE_SUPABASE_URL_HERE";
-const SUPABASE_ANON_KEY = "PASTE_SUPABASE_ANON_KEY_HERE";
+const SUPABASE_URL = "https://eayaesctpsoyaruabher.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_Gl4UYd3rike0LojA7G-LXQ_KULVNqQp";
 
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
