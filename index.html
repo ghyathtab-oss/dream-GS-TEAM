@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>سجل المرضى</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="bg-orb orb-a"></div>
+  <div class="bg-orb orb-b"></div>
+
+  <main class="shell">
+    <section id="authView" class="auth-card glass">
+      <div class="brand">
+        <div class="brand-mark">+</div>
+        <div>
+          <h1>سجل المرضى</h1>
+          <p>دخول آمن للموظفين</p>
+        </div>
+      </div>
+
+      <form id="loginForm" class="stack">
+        <label>
+          البريد الإلكتروني
+          <input id="email" type="email" autocomplete="username" required placeholder="name@clinic.com">
+        </label>
+        <label>
+          كلمة المرور
+          <input id="password" type="password" autocomplete="current-password" required placeholder="••••••••">
+        </label>
+        <button class="primary" type="submit">تسجيل الدخول</button>
+        <p id="authMsg" class="msg"></p>
+      </form>
+    </section>
+
+    <section id="appView" class="hidden">
+      <header class="topbar glass">
+        <div class="brand">
+          <div class="brand-mark">+</div>
+          <div>
+            <h1>سجل المرضى</h1>
+            <p id="userLabel">الحفظ التلقائي مفعّل</p>
+          </div>
+        </div>
+        <button id="logoutBtn" class="ghost">تسجيل الخروج</button>
+      </header>
+
+      <div class="grid">
+        <section class="panel glass">
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow">إضافة / تعديل</span>
+              <h2>بيانات المريض</h2>
+            </div>
+            <span id="saveState" class="save-state">جاهز</span>
+          </div>
+
+          <form id="patientForm" class="stack" autocomplete="off">
+            <input id="recordId" type="hidden">
+
+            <label>
+              اسم المريض
+              <input id="patientName" type="text" maxlength="120" required placeholder="الاسم الكامل">
+            </label>
+
+            <label>
+              الشكاية
+              <textarea id="complaint" maxlength="2000" rows="5" required placeholder="اكتب الشكاية أو الملاحظة الرئيسية"></textarea>
+            </label>
+
+            <label>
+              رقم التواصل
+              <input id="phone" type="tel" inputmode="tel" maxlength="30" required placeholder="+39 ...">
+            </label>
+
+            <div class="actions">
+              <button id="newBtn" type="button" class="secondary">سجل جديد</button>
+              <button id="deleteBtn" type="button" class="danger hidden">حذف السجل</button>
+            </div>
+
+            <p class="hint">يتم الحفظ تلقائيًا بعد توقف الكتابة لجزء من الثانية.</p>
+          </form>
+        </section>
+
+        <section class="panel glass">
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow">السجلات</span>
+              <h2>المرضى</h2>
+            </div>
+            <input id="searchInput" class="search" type="search" placeholder="بحث بالاسم أو الرقم">
+          </div>
+
+          <div id="patientList" class="patient-list"></div>
+          <div id="emptyState" class="empty hidden">
+            <div class="empty-icon">⌕</div>
+            <p>لا توجد سجلات بعد.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <template id="patientCardTpl">
+    <article class="patient-card">
+      <button class="card-main" type="button">
+        <strong class="card-name"></strong>
+        <span class="card-phone"></span>
+        <span class="card-complaint"></span>
+      </button>
+      <div class="card-actions">
+        <a class="icon-btn call" aria-label="اتصال" title="اتصال">☎</a>
+        <a class="icon-btn whatsapp" target="_blank" rel="noopener" aria-label="واتساب" title="واتساب">◉</a>
+      </div>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
